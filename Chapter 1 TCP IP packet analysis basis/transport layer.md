@@ -99,3 +99,27 @@ Flags|설명
 Options는 상세한 조정 기능을 위해 예약되어 있고, Padding은 가변적인 헤더의 크기를 일정하게 맞추기 위해 사용한다.
 
 
+## 💡 UDP Protocol
+TCP에 비해 **단순한 헤더 정보**를 가지고 있고 **속도 또한 빠르지만**, **신뢰성은 보장되지 않는다**.
+UDP는 데이터 전달에만 목적이 있다. 상대방의 준비 상태에는 관심도 없고 정상 수신 여부에도 관심이 없다.
+실시간 인터넷 방송과 전화와 같은 일부 데이터가 손상되어도 크게 영향 받지 않는 서비스에 활용되는 프로토콜이다.
+
+- 🧸 **데이터 정상 전달**
+
+세션 연결 없이 데이터를 전달한다.
+
+![UDP packet sent 1](https://user-images.githubusercontent.com/66156026/159283937-9ba05f37-d1dd-4e74-b4d7-381ea6766405.jpg)
+
+- 🧸 **UDP 전달 중 데이터 손실 발생**
+
+데이터 전달 중 손실이 발생할 경우, 다시 요청하지 않고 해당 데이터를 폐기한다.
+
+![UDP packet sent 2](https://user-images.githubusercontent.com/66156026/159283948-710955cf-7bd5-466b-ac86-5066fdbab235.jpg)
+
+- 🧸 **잘못된 포트로 UDP 접속 시도**
+
+대상 서버가 제공하지 않는 포트로 접속을 시도하는 경우, UDP에는 에러 처리 기능이 없어 ICMP 메시지를 전달하여 접근이 불가함을 알린다.
+`````'목적지 도달 불가(Port unreachable)'````` 메시지를 상대방에게 전달한다.
+
+![UDP packet sent 3](https://user-images.githubusercontent.com/66156026/159283957-eee07fdb-5451-416e-b181-78dc766588d9.jpg)
+
