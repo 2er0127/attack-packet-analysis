@@ -7,3 +7,7 @@
 - [network layer](./Chapter%201%20TCP%20IP%20packet%20analysis%20basis/network%20layer.md)
 - [transport layer](./Chapter%201%20TCP%20IP%20packet%20analysis%20basis/transport%20layer.md)
 - [application layer](./Chapter%201%20TCP%20IP%20packet%20analysis%20basis/application%20layer.md)
+
+### 네트워크 포트 스캔 👀
+- [TCP port scan](./Chapter%202%20Network%20port%20scan/TCP%20port%20scan.md)
+- [UDP port scan](./Chapter%202%20Network%20port%20scan/UDP%20port%20scan.md)
