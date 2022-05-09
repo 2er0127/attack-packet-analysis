@@ -118,3 +118,58 @@ x.x.x.x|목적지 IP
 
 ex) ```hping3 -1 x.x.x.x -s 1900 -p 80 -d 8000 -i u10 -c 100000 --rand-source -flood```
 
+<br/>
+<br/>
+
+## 💡 ICMP Flooding
+**ICMP(Internet Control Message Protocol)** 는 인터넷 환경에서 오류에 관한 처리를 지원하는 역할을 한다.
+라우터와 같은 네트워크 장비에서 패킷을 전송할 때, 해당 패킷이 목적지 호스트까지 도달하지 못하거나 목적지 호스트가 정상적으로 동작하지 않을 때 에러 메시지를 응답하여 오류 상황을 알려준다. 
+가장 흔히 아는 ```ping``` 명령어를 예로 들 수 있다.
+
+![ICMP 패킷 구조](https://user-images.githubusercontent.com/66156026/167421731-a074ae20-ab3c-4bf2-9a1d-d4dcd261899d.png)
+
+오류에 관한 내용은 Type과 Code의 값으로 구분한다.
+
+#### 자주 사용하는 ICMP 메시지 타입
+
+Type|Code|Message
+:---:|:---:|:---:|
+0|0|Echo reply
+3|0|Destination network unreachable
+3|1|Destination host unreachable
+3|2|Destination protocol unreachable
+3|3|Destination port unreachable
+3|4|Fragmentation required, and DF flag set
+3|6|Destination network unknown
+3|7|Destination host unknown
+4|0|Source quench(congestion control)
+8|0|Echo request(used to ping)
+
+### 🧸 ICMP Flooding 공격 패킷 분석
+
+![스크린샷 2022-05-09 오후 10 42 51](https://user-images.githubusercontent.com/66156026/167423182-6d7b2c02-e72b-4c7b-a467-be0730a8060b.png)
+
+ICMP 요청 패킷을 이용하여 공격을 발생시키기 때문에 ICMP 메시지 타입에서 ```Type 8, Code 0```에 해당하는 **Echo request**가 사용되는 것을 확인할 수 있다.
+데이터 크기가(Length) **1442**로 상당히 큰 크기이며, 데이터 값이 '```XXXXX```' 형태의 의미없는 값이다. 패킷의 크기를 의도적으로 크게 만들기 위해서 라는 것을 알 수 있고,
+출발지 IP 또한 무작위 형태인 것으로 보아 **위조한(Spoofing) 상태라고 간주**할 수 있다.
+
+### 🧸 ICMP Flooding 대응 방안
+ICMP Flooding은 UDP Flooding과 마찬가지로 회선 대역폭을 고갈시키는 대역폭 공격이다. 그렇기 때문에 UDP Flooding의 대응 방안과 거의 비슷하다.
+
+- 충분한 네트워크 대역폭 확보
+- 위조된 IP 차단
+- 출발지 IP별 임계치 기반 차단
+- Fragmentation 패킷 차단
+- 서버 대역폭 및 가용량 확대
+- Anycast를 이용한 대응
+- Ingress 필터링과 Egress 필터링
+
+**미사용 프로토콜 필터링** <br/>
+UDP와 달리 ICMP는 헬스 체크의 목적으로만 사용할 뿐 서비스 목적으로는 사용하지 않는 프로토콜이다. 상단 라우터 또는 차단 장비에서 차단하더라도 서비스 운영에는 거의 영향이 없다.
+하지만 ```ping, traceroute, mtr```과 같은 ICMP 명령어를 사용하기 때문에 단지 프로토콜을 차단하는 것은 부담이 될 수 있다. DDoS 방어를 목적으로 ICMP 프로토콜을 사용하지 않기를 감수한다면 차단 장비에서 원천 차단하여 대응할 수 있다.
+
+**패킷 크기 기반 차단** <br/>
+특정 크기 이상의 ICMP 패킷을 차단해 두면 큰 패킷으로 위조된 형태의 ICMP Flooding을 차단할 수 있다.
+일반적인 ping이나 traceroute에서 사용되는 ```ICMP echo request```의 경우에는 **64~80바이트** 정도의 패킷으로 전송되지만,
+응답되는 ```ICMP echo reply```의 경우 **약 300바이트**가량의 큰 크기로 수신될 수도 있어 자신의 네트워크에서 통신되는 ICMP 패킷의 크기를 조사하여 **임계치를 설정**하는 것이 좋다.
+
