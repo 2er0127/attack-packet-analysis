@@ -23,3 +23,5 @@
 - [Analysis procedure](./Large%20Packet%20Analysis/Analysis%20procedure.md)
 - [HTTTP Packet Analysis](./Large%20Packet%20Analysis/HTTP%20Packet%20Analysis.md)
 - [Check attacks by multiple protocols](./Large%20Packet%20Analysis/Check%20attacks%20by%20multiple%20protocols.md)
+- [Packet Segmentation and Integration](./Large%20Packet%20Analysis/Packet%20Segmentation%20and%20Integration.md)
+- [Packet Visualization](./Large%20Packet%20Analysis/Packet%20Visualization.md)
