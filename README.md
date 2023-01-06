@@ -19,3 +19,7 @@
 - [Resource depletion attack](./Chapter%203%20DDoS%20attack%20packet%20analysis/resource%20depletion%20attack.md)
 - [Application layer attack](./Chapter%203%20DDoS%20attack%20packet%20analysis/application%20layer%20attack.md)
 
+### 대용량 패킷 분석 📶
+- [Analysis procedure](./Large%20Packet%20Analysis/Analysis%20procedure.md)
+- [HTTTP Packet Analysis](./Large%20Packet%20Analysis/HTTP%20Packet%20Analysis.md)
+- [Check attacks by multiple protocols](./Large%20Packet%20Analysis/Check%20attacks%20by%20multiple%20protocols.md)
