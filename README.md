@@ -25,3 +25,9 @@
 - [Check attacks by multiple protocols](./Large%20Packet%20Analysis/Check%20attacks%20by%20multiple%20protocols.md)
 - [Packet Segmentation and Integration](./Large%20Packet%20Analysis/Packet%20Segmentation%20and%20Integration.md)
 - [Packet Visualization](./Large%20Packet%20Analysis/Packet%20Visualization.md)
+
+### 웹 해킹 패킷 분석 👾
+- [Analyze Web Vulnerability Scanning Traffic](./Analysis%20of%20Web%20Hacking%20Packets/Analyze%20Web%20Vulnerability%20Scanning%20Traffic.md)
+- [SQL Injection Attack Packet Analysis](./Analysis%20of%20Web%20Hacking%20Packets/SQL%20Injection%20Attack%20Packet%20Analysis.md)
+- [XSS Attack Packet Analysis](./Analysis%20of%20Web%20Hacking%20Packets/XSS%20Attack%20Packet%20Analysis.md)
+- [Web Shell Upload Attack Packet Analysis](./Analysis%20of%20Web%20Hacking%20Packets/Web%20Shell%20Upload%20Attack%20Packet%20Analysis.md)
